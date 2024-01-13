@@ -17,7 +17,7 @@ Creating_table()
 
 
 # 1 Get post for testing
-@app.get("/api")
+@app.get("/api", tags=["Testing"])
 def hello_world():
     return {"message": "Hello World"}
 

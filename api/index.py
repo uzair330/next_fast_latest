@@ -23,7 +23,8 @@ def hello_world():
 
 
 # 2 Get posts
-@app.get("/api/post", dependencies=[Depends(JWTBearer())], tags=["posts"])
+# @app.get("/api/post", dependencies=[Depends(JWTBearer())], tags=["posts"])
+@app.get("/api/post", tags=["posts"])
 async def read_todos():
     with Session() as session:
         todos = session.query(Todo_Table).all()
@@ -31,8 +32,7 @@ async def read_todos():
 
 
 # 4 Post a blog post (handler for creating a post)
-# @app.post("/api/post", dependencies=[Depends(JWTBearer())], tags=["posts"])
-@app.post("/api/post", tags=["posts"])
+@app.post("/api/post", dependencies=[Depends(JWTBearer())], tags=["posts"])
 def add_post(todo: TodoSchema):
     with Session() as session:
         todo = Todo_Table(task=todo.task, status=todo.status)

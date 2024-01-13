@@ -31,7 +31,8 @@ async def read_todos():
 
 
 # 4 Post a blog post (handler for creating a post)
-@app.post("/api/post", dependencies=[Depends(JWTBearer())], tags=["posts"])
+# @app.post("/api/post", dependencies=[Depends(JWTBearer())], tags=["posts"])
+@app.post("/api/post", tags=["posts"])
 def add_post(todo: TodoSchema):
     with Session() as session:
         todo = Todo_Table(task=todo.task, status=todo.status)
